@@ -1,0 +1,85 @@
+<app-navbar></app-navbar>
+<div class="mx-4 mt-5">
+  <div class="justify-content-center mb-5">
+    <form
+      action=""
+      dir="rtl"
+      class="row"
+      [formGroup]="editPhoneAddressForm"
+      (submit)="update()"
+    >
+      <div class="form-group col-md-3 text-right">
+        <label for="">
+          فئة الجهة الرسمية (أمن عام ، بلدية ، دفاع مدني ...)</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          formControlName="category"
+          [value]="(item | async)?.category"
+          required
+          maxlength="250"
+        />
+        <mat-error
+          *ngIf="
+            editPhoneAddressForm.controls.category.errors?.required &&
+            editPhoneAddressForm.controls.category.touched
+          "
+        >
+          هذا الحقل مطلوب
+        </mat-error>
+      </div>
+      <div class="form-group col-md-3 text-right">
+        <label for=""> اسم الجهة الرسمية </label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="contactName"
+          [value]="(item | async)?.name"
+          required
+          maxlength="250"
+        />
+        <mat-error
+          *ngIf="
+            editPhoneAddressForm.controls.contactName.errors?.required &&
+            editPhoneAddressForm.controls.contactName.touched
+          "
+        >
+          هذا الحقل مطلوب
+        </mat-error>
+      </div>
+      <div class="form-group col-md-2 text-right">
+        <label for=""> رقم الهاتف </label>
+        <input
+          type="tel"
+          class="form-control"
+          [value]="(item | async)?.phone"
+          formControlName="phoneNumber"
+          required
+          maxlength="10"
+          minlength="6"
+        />
+        <mat-error
+          *ngIf="
+            editPhoneAddressForm.controls.phoneNumber.errors?.required &&
+            editPhoneAddressForm.controls.phoneNumber.touched
+          "
+        >
+          هذا الحقل مطلوب
+        </mat-error>
+        <mat-error
+          *ngIf="
+            editPhoneAddressForm.controls.phoneNumber.hasError('minlength')
+          "
+        >
+          يجب أن يحتوي على 6 عناصر أو أكثر
+        </mat-error>
+      </div>
+      <div class="form-group col-md-2 text-center">
+        <button class="btn btn-success mt-30px w-75 py-2" type="submit">
+          تعديل
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

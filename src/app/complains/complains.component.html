@@ -1,0 +1,152 @@
+<app-navbar></app-navbar>
+<div class="mx-2 mt-4 pt-1">
+  <div class="row mx-0 my-5 justify-content-center" dir="rtl">
+    <div class="form-group col-md-2 text-right">
+      <label for=""> التاريخ</label>
+      <select
+        name=""
+        id=""
+        class="custom-select"
+        (change)="onDateOrderSelectChage($event.target.value)"
+      >
+        <option value="Select">اختر</option>
+
+        <option value="desc">من الأحدث للأقدم</option>
+        <option value="asc">من الأقدم للأحدث</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2 text-right">
+      <label for=""> المحافظة</label>
+      <select
+        name=""
+        id=""
+        class="custom-select"
+        (change)="onCityCahnged($event.target.value)"
+      >
+        <option value="Select">اختر</option>
+
+        <option value="عمان">عمان</option>
+        <option value="إربد">إربد</option>
+        <option value="الكرك">الكرك</option>
+        <option value="معان">معان</option>
+        <option value="الطفيلة">الطفيلة</option>
+        <option value="العقبة">العقبة</option>
+        <option value="الزرقاء">الزرقاء</option>
+        <option value="جرش">جرش</option>
+        <option value="عجلون">عجلون</option>
+        <option value="السلط">السلط</option>
+        <option value="مادبا">مادبا</option>
+        <option value="البلقاء">البلقاء</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2 text-right">
+      <label for=""> الفئة</label>
+      <select
+        name=""
+        id=""
+        class="custom-select"
+        (change)="onCategorySelectChanged($event.target.value)"
+      >
+        <option value="Select">اختر</option>
+
+        <option value="Select">اختر</option>
+        <option value="البلدية">البلدية</option>
+        <option value="الأمن العام">الأمن العام</option>
+        <option value="الدفاع المدني">الدفاع المدني</option>
+        <option value="التقصي الوبائي">التقصي الوبائي</option>
+        <option value="سلطة الكهرباء">سلطة الكهرباء</option>
+        <option value="مكافحة المخدرات">مكافحة المخدرات</option>
+        <option value="سلطة المياة">سلطة المياة</option>
+        <option value="المخابرات">المخابرات</option>
+        <option value="شرطة السير">شرطة السير</option>
+        <option value="فئة أخرى">فئة أخرى</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-2 text-right">
+      <label for=""> الحالة</label>
+      <select
+        name=""
+        id=""
+        class="custom-select"
+        (change)="onStatusSelectChanged($event.target.value)"
+      >
+        <option value="Select">اختر</option>
+
+        <option value="تم ارسالها">تم استلامها</option>
+        <option value="قيدالمتابعة">قيدالمتابعة</option>
+        <option value="تم حلها">تم حلها</option>
+        <option value="تم رفضها">تم رفضها</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2 text-right">
+      <label for=""> عرض التفاصيل</label>
+      <select
+        name=""
+        id=""
+        class="custom-select"
+        (change)="viewSelectChange($event.target.value)"
+      >
+        <option value="Select">اختر</option>
+
+        <option value="false">لم يتم عرضها</option>
+        <option value="true">تم عرضها</option>
+      </select>
+    </div>
+    <!-- <div class="col-md-2 text-center form-group">
+      <button class="btn btn-primary text-white py-2 mt-30px">
+        فلترة الحقول
+      </button>
+    </div> -->
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered" dir="rtl">
+      <thead class="bg-grey text-center">
+        <!-- <th>الرقم</th> -->
+        <th>التاريخ</th>
+        <th>المحتوى</th>
+        <th>المحافظة</th>
+        <th>الفئة</th>
+        <th>الحالة</th>
+        <th>التفاصيل</th>
+      </thead>
+      <tbody class="text-center">
+        <tr *ngFor="let complain of complains | async">
+          <!-- <td>{{ complain.id }}</td> -->
+          <td>{{ complain.date | date: "hh:mm - dd/MM/yyyy" }}</td>
+          <td>
+            {{ complain.problemDescription }}
+          </td>
+          <td>{{ complain.city }}</td>
+          <td>{{ complain.category }}</td>
+          <td>{{ complain.status }}</td>
+
+          <td>
+            <span *ngIf="complain.viewed == false"
+              ><ejs-tooltip id="tooltip" content="لم يتم عرضها قبل الآن ">
+                <a
+                  [routerLink]="['/view-complain']"
+                  [queryParams]="{ id: complain.id }"
+                  rel="noopener noreferrer"
+                >
+                  <i class="text-success fa fa-eye fa-2x"></i
+                ></a> </ejs-tooltip
+            ></span>
+            <span *ngIf="complain.viewed == true">
+              <ejs-tooltip id="tooltip" content="تم عرضها من قبلك">
+                <a
+                  [routerLink]="['/view-complain']"
+                  [queryParams]="{ id: complain.id }"
+                  rel="noopener noreferrer"
+                >
+                  <i class="text-dark fa fa-eye fa-2x"></i
+                ></a>
+              </ejs-tooltip>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

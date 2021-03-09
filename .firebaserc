@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "sharek-80e70": {
+      "hosting": {
+        "sharek-admin-panel": [
+          "sharek-80e70"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "sharek-80e70"
+  }
+}

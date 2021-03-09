@@ -1,0 +1,23 @@
+form {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif !important;
+}
+.fa-trash {
+  font-size: 25px !important;
+}
+.fa-trash:hover {
+  color: #a31414 !important;
+}
+.fa-trash:focus {
+  border: none !important;
+  color: #a31414 !important;
+}
+.fa-pencil-square-o {
+  font-size: 25px !important;
+}
+.fa-pencil-square-o:hover {
+  color: #308117 !important;
+}
+.fa-pencil-square-o:hover {
+  color: #308117 !important;
+  border: none !important;
+}

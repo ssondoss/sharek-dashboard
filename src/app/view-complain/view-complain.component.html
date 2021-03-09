@@ -1,0 +1,164 @@
+<app-navbar></app-navbar>
+<div class="mx-3">
+  <div class="table-responsive mt-5">
+    <table class="table table-bordered" dir="rtl">
+      <thead>
+        <th colspan="2" class="bg-light">
+          <h4 class="text-primary text-center">تفاصيل الإبلاغ أو الشكوى</h4>
+        </th>
+      </thead>
+      <tbody class="text-center">
+        <!-- <tr>
+          <td class="w-25 text-primary f-19">الرقم</td>
+
+          <td>{{ (item | async)?.id }}</td>
+        </tr> -->
+        <tr>
+          <td class="w-25 text-primary f-19">التاريخ</td>
+
+          <td>{{ (item | async)?.date | date: "hh:mm - dd/MM/yyyy" }}</td>
+        </tr>
+
+        <tr>
+          <td class="w-25 text-primary f-19">المحتوى</td>
+          <td>{{ (item | async)?.problemDescription }}</td>
+        </tr>
+        <tr *ngIf="getMediaType((item | async)?.problemImage) != 'other'">
+          <td class="w-25 text-primary f-19">المحتوى المرئي</td>
+          <td>
+            <img
+              *ngIf="getMediaType((item | async)?.problemImage) == 'image'"
+              src="{{ getImageURL((item | async)?.problemImage) }}"
+              alt=""
+              width="auto"
+              height="500"
+            />
+            <video
+              *ngIf="getMediaType((item | async)?.problemImage) == 'video'"
+              src="{{ getVideoURL((item | async)?.problemImage) }}"
+              width="auto"
+              height="500"
+              controls
+            ></video>
+          </td>
+        </tr>
+        <tr>
+          <td class="w-25 text-primary f-19">الموقع</td>
+
+          <td>
+            {{ (item | async)?.locationDescription }}
+            <br />
+
+            <ejs-tooltip id="tooltip" content=" الموقع على خرائط جوجل">
+              <a
+                [attr.href]="
+                  'http://www.google.com/maps/place/' +
+                  getPointN((item | async)?.locationPoints, 0) +
+                  getPointN((item | async)?.locationPoints, 1)
+                "
+                target="_blank"
+                *ngIf="(item | async)?.locationPoints != ''"
+                ><i class="fa fa-map-marker m-3 fa-3x text-success"></i
+              ></a>
+            </ejs-tooltip>
+          </td>
+        </tr>
+        <tr>
+          <td class="w-25 text-primary f-19">رقم الهاتف للمحتوى</td>
+
+          <td>0798022719</td>
+        </tr>
+        <tr>
+          <td class="w-25 text-primary f-19">
+            ملاحظات إضافية من الجهة المرسلة
+          </td>
+
+          <td>لا يوجد</td>
+        </tr>
+        <tr>
+          <td class="w-25 text-primary f-19">الحالة</td>
+          <td *ngIf="disabledSelect == false">
+            <div class="row text-center justify-content-center">
+              <select
+                name=""
+                id=""
+                class="custom-select col-6"
+                (change)="onChangeStatus($event.target.value)"
+              >
+                <option value="تم ارسالها">تم استلامها</option>
+                <option value="قيدالمتابعة">قيدالمتابعة</option>
+                <option value="تم حلها">تم حلها</option>
+                <option value="تم رفضها">تم رفضها</option>
+              </select>
+              <button
+                class="btn btn-success mr-3 px-3"
+                (click)="confirmStatus()"
+              >
+                تأكيد
+              </button>
+            </div>
+          </td>
+          <td *ngIf="disabledSelect == true">
+            {{
+              (item | async)?.status === "تم ارسالها"
+                ? "تم استلامها"
+                : (item | async)?.status
+            }}
+
+            <i
+              class="fa fa-pencil-square-o mx-3 text-success"
+              (click)="editStatus()"
+            ></i>
+          </td>
+        </tr>
+        <tr>
+          <td class="w-25 text-primary f-19">
+            ملاحظات إضافية من الجهة المستقبلة
+          </td>
+
+          <td *ngIf="disabledNotes == true">
+            <p>{{ getAdminNotes((item | async)?.adminNotes) }}</p>
+            <i
+              class="fa fa-pencil-square-o mx-3 text-success"
+              (click)="editAditionalNotes()"
+            ></i>
+          </td>
+          <td *ngIf="disabledNotes == false">
+            <div class="row text-center justify-content-center">
+              <textarea
+                class="form-control col-6"
+                rows="3"
+                #notes
+                [value]="getAdminNotes((item | async)?.adminNotes)"
+              >
+              </textarea>
+              <button
+                class="btn btn-success mr-3 px-3 h-50"
+                (click)="confirmNotes(notes.value)"
+              >
+                تأكيد
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="bg-light">
+            <h4 class="text-primary text-center">معلومات المرسل</h4>
+          </td>
+        </tr>
+        <tr>
+          <td class="w-25 text-primary f-19">الاسم</td>
+          <td>{{ (item | async)?.username }}</td>
+        </tr>
+        <tr>
+          <td class="w-25 text-primary f-19">الرقم الوطني</td>
+          <td>{{ (item | async)?.nationalID }}</td>
+        </tr>
+        <tr>
+          <td class="w-25 text-primary f-19">رقم الهاتف عند التسجيل</td>
+          <td>{{ (item | async)?.mobilePhone }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<nav dir="rtl" class="mb-1 navbar navbar-expand-lg navbar-dark">
+  <a class="navbar-brand" href="#"
+    ><img src="../../assets/logo.png" alt="" height="50" width="auto"
+  /></a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent-333"
+    aria-controls="navbarSupportedContent-333"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <i class="fa fa-bars px-2 py-1 text-black" aria-hidden="true"></i>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+    <ul class="navbar-nav mr-auto top-ul">
+      <li class="nav-item active text-right">
+        <a class="nav-link" routerLink="/"
+          >الصفحة الرئيسية
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item text-right mr-0">
+        <a class="nav-link" href="#" routerLink="/phone-address">دليل الهاتف</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/complains">الإبلاغات والشكاوي</a>
+      </li>
+      <li class="nav-item" (click)="logout()">
+        <a class="nav-link"> تسجيل الخروج</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons"></ul>
+  </div>
+</nav>

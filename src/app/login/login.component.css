@@ -1,0 +1,15 @@
+.card {
+  box-shadow: 2px 4px 8px #9b9999b4 !important;
+}
+.icon-btn:hover {
+  color: #a72323 !important;
+}
+.bg-white-cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000b4;
+  background-size: cover;
+  width: auto;
+  height: 100vh;
+}
